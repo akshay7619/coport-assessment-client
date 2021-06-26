@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: `http://localhost:3000`,
+  apiUrl: `https://obscure-sands-42343.herokuapp.com`,
   appName: "Coport Assessment"
 };
 
