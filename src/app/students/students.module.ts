@@ -7,12 +7,14 @@ import { MaterialModule } from '../comon-modules/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateUpdateStudentModelComponent } from './models/create-update-student-model/create-update-student-model.component';
+import { DeleteStudentModelComponent } from './models/delete-student-model/delete-student-model.component';
 
 
 @NgModule({
   declarations: [
     StudentListComponent,
-    CreateUpdateStudentModelComponent
+    CreateUpdateStudentModelComponent,
+    DeleteStudentModelComponent
   ],
   imports: [
     CommonModule,

@@ -20,7 +20,7 @@ export class CreateUpdateStudentModelComponent implements OnInit {
       this.defaults = {};
     }
     this.form = this.fb.group({
-      id: new FormControl({ value: this.defaults && this.defaults.id ? this.defaults.id : '', disabled: true }),
+      _id: new FormControl({ value: this.defaults && this.defaults._id ? this.defaults._id : '', disabled: true }),
       name: new FormControl({ value: this.defaults && this.defaults.name ? this.defaults.name : '', disabled: false }, [Validators.required]),
       fatherName: new FormControl({ value: this.defaults && this.defaults.fatherName ? this.defaults.fatherName : '', disabled: false }),
       motherName: new FormControl({ value: this.defaults && this.defaults.motherName ? this.defaults.motherName : '', disabled: false }),

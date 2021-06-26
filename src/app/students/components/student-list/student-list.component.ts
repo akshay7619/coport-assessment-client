@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { CreateUpdateStudentModelComponent } from '../../models/create-update-student-model/create-update-student-model.component';
+import { DeleteStudentModelComponent } from '../../models/delete-student-model/delete-student-model.component';
 import { RestHandlerServiceService } from '../../services/rest-handler-service.service';
 export interface StudentData {
   _id: string;
@@ -23,7 +24,7 @@ export interface StudentData {
   styleUrls: ['./student-list.component.scss']
 })
 export class StudentListComponent implements AfterViewInit {
-  displayedColumns: string[] = ['_id', 'name', 'fatherName', 'motherName'];
+  displayedColumns: string[] = ['_id', 'name', 'fatherName', 'motherName', 'editStudent', 'deleteStudent'];
   dataSource: MatTableDataSource<StudentData>;
   apiRoute = `students`;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -60,7 +61,7 @@ export class StudentListComponent implements AfterViewInit {
       disableClose: true,
       data: data ? data : null
     }).afterClosed().subscribe((newStudentDetails) => {
-      if (newStudentDetails && newStudentDetails.data && !newStudentDetails.data.id) {
+      if (newStudentDetails && newStudentDetails.data && !newStudentDetails.data._id) {
         this.restService.postRequest(this.apiRoute, null, newStudentDetails.data).subscribe((res: any) => {
           this.toaterService.success("Student added successfully!", "SUCCESS")
           this.getAllStudents();
@@ -68,9 +69,28 @@ export class StudentListComponent implements AfterViewInit {
           console.log(err)
           this.toaterService.error(err.error.message, "Error")
         });
-      } else if (newStudentDetails && newStudentDetails.data && newStudentDetails.data.id) {
-        this.restService.patchRequest(this.apiRoute, newStudentDetails.data.id, newStudentDetails.data).subscribe((res: any) => {
-          this.toaterService.success(res.message, "SUCCESS")
+      } else if (newStudentDetails && newStudentDetails.data && newStudentDetails.data._id) {
+        this.restService.patchRequest(this.apiRoute, newStudentDetails.data._id, newStudentDetails.data).subscribe((res: any) => {
+          this.toaterService.success("Student updated successfully!", "SUCCESS")
+          this.getAllStudents();
+        }, err => {
+          console.log(err)
+          this.toaterService.error(err.error.message, "Error")
+        });
+      }
+    });
+  }
+
+  delete(data) {
+    this.dialog.open(DeleteStudentModelComponent, {
+      height: 'auto',
+      width: '30rem',
+      disableClose: true,
+      data: data ? data : null
+    }).afterClosed().subscribe(({ event }) => {
+      if (event == 'delete') {
+        this.restService.deleteRequest(this.apiRoute, data._id).subscribe((res: any) => {
+          this.toaterService.success("Student deleted successfully!", "SUCCESS")
           this.getAllStudents();
         }, err => {
           console.log(err)

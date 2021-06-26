@@ -56,7 +56,7 @@ export class RestHandlerServiceService {
 
   patchRequest(interfaceUrl: string, action?: any, data?: any): Observable<any> {
     return this.httpClient.patch<any>(
-      this.getEndpointURL(action, interfaceUrl), { ...data })
+      this.getEndpointURL(action, interfaceUrl), data)
       .pipe(
         catchError(this.handleError('patchError', action))
       );

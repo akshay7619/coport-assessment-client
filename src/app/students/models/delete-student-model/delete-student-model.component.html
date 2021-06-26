@@ -1,0 +1,19 @@
+<div>
+    <div class="row" mat-dialog-title>
+        <h4 class="title m-0">Delete Student?</h4>
+    </div>
+
+    <mat-dialog-content>
+        <div class="row">
+            <p>Are you sure you want to delete <b>{{defaults.name}}?</b></p>
+        </div>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close type="button">CANCEL</button>
+        <button (click)="delete()" class="mat-raised-button mat-button-base mat-primary" color="primary" mat-button
+            type="submit">Delete
+            Student</button>
+    </mat-dialog-actions>
+</div>
