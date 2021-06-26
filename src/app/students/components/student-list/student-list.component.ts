@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -38,6 +38,9 @@ export class StudentListComponent implements AfterViewInit {
     this.getAllStudents();
   }
 
+  /**
+  * Get all students
+  */
   getAllStudents() {
     this.restService.getRequest(this.apiRoute).subscribe(studentList => {
       // Assign the data to the data source for the table to render
@@ -66,7 +69,6 @@ export class StudentListComponent implements AfterViewInit {
           this.toaterService.success("Student added successfully!", "SUCCESS")
           this.getAllStudents();
         }, err => {
-          console.log(err)
           this.toaterService.error(err.error.message, "Error")
         });
       } else if (newStudentDetails && newStudentDetails.data && newStudentDetails.data._id) {
@@ -74,12 +76,15 @@ export class StudentListComponent implements AfterViewInit {
           this.toaterService.success("Student updated successfully!", "SUCCESS")
           this.getAllStudents();
         }, err => {
-          console.log(err)
           this.toaterService.error(err.error.message, "Error")
         });
       }
     });
   }
+
+  /**
+   * Delete a student
+   */
 
   delete(data) {
     this.dialog.open(DeleteStudentModelComponent, {
@@ -93,13 +98,11 @@ export class StudentListComponent implements AfterViewInit {
           this.toaterService.success("Student deleted successfully!", "SUCCESS")
           this.getAllStudents();
         }, err => {
-          console.log(err)
           this.toaterService.error(err.error.message, "Error")
         });
       }
     });
   }
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
