@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HandleError, HttpErrorHandler } from './http-error-handler.service';
@@ -10,11 +10,16 @@ import { HandleError, HttpErrorHandler } from './http-error-handler.service';
 })
 export class RestHandlerServiceService {
   private handleError: HandleError;
+  public changeDetect = new Subject<any>();
   constructor(
     private httpClient: HttpClient,
     httpErrorHandler: HttpErrorHandler
   ) {
     this.handleError = httpErrorHandler.createHandleError(environment.appName);
+  }
+
+  getChanges(): Observable<any> {
+    return this.changeDetect.asObservable();
   }
 
   postRequest(interfaceUrl: string, action?: any, data?: any, propertyInput?: boolean): Observable<any> {

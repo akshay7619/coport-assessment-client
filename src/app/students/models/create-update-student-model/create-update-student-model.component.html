@@ -1,0 +1,40 @@
+<form (ngSubmit)="save()" [formGroup]="form" autocomplete="off">
+    <div class="row" mat-dialog-title>
+        <h4 *ngIf="mode=='update'" class="title m-0">
+            Update student!</h4>
+        <h4 *ngIf="mode=='create'" class="title m-0">Add new student!</h4>
+    </div>
+
+    <mat-dialog-content>
+        <div class="row">
+            <mat-form-field class="col-12" *ngIf="form.controls.id.value">
+                <mat-label>Student ID</mat-label>
+                <input formControlName="id" matInput>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-12">
+                <mat-label>Student Name</mat-label>
+                <input formControlName="name" matInput required>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-12">
+                <mat-label>Student Father's Name</mat-label>
+                <input formControlName="fatherName" matInput required>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-12">
+                <mat-label>Student Mother's Name</mat-label>
+                <input formControlName="motherName" matInput required>
+            </mat-form-field>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close type="button">CANCEL</button>
+        <button class="mat-raised-button mat-button-base mat-primary" color="primary" mat-button type="submit"
+            [disabled]="!form.valid">Save Student</button>
+    </mat-dialog-actions>
+</form>

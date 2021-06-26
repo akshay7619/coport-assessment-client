@@ -5,18 +5,22 @@ import { StudentsRoutingModule } from './students-routing.module';
 import { StudentListComponent } from './components/student-list/student-list.component';
 import { MaterialModule } from '../comon-modules/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CreateUpdateStudentModelComponent } from './models/create-update-student-model/create-update-student-model.component';
 
 
 @NgModule({
   declarations: [
-    StudentListComponent
+    StudentListComponent,
+    CreateUpdateStudentModelComponent
   ],
   imports: [
     CommonModule,
     StudentsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
-  ]
+    MaterialModule,
+  ],
+  entryComponents: [CreateUpdateStudentModelComponent]
 })
 export class StudentsModule { }
