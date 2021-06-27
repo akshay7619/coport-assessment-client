@@ -11,12 +11,10 @@ export interface StudentData {
   _id: string;
   name: string;
   fatherName: string;
-  MotherName: string;
+  motherName: string;
 }
 
-/**
- * @title Data table with sorting, pagination, and filtering.
- */
+
 
 @Component({
   selector: 'app-student-list',
@@ -44,7 +42,9 @@ export class StudentListComponent implements AfterViewInit {
   getAllStudents() {
     this.restService.getRequest(this.apiRoute).subscribe(studentList => {
       // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource(studentList);
+      this.dataSource = new MatTableDataSource(studentList.reverse());
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       setTimeout(() => {
         this.restService.changeDetect.next(this.dataSource);
       }, 500)
