@@ -2,6 +2,10 @@
 
 This repo is for Coport Assessment Client side.
 
+## Working Demo
+
+This app is deployed on `Heroku`. You can access that [here..](https://coport-assessment.herokuapp.com/).
+
 ## Install Dependencies
 
 Use the package manager [npm](https://www.npmjs.com/) to install the dependencies.
@@ -9,10 +13,6 @@ Use the package manager [npm](https://www.npmjs.com/) to install the dependencie
 ```bash
 npm install
 ```
-
-## Working Demo
-
-This app is deployed on `Heroku`. You can access that [here..](https://coport-assessment.herokuapp.com/).
 
 ## Development server
 
