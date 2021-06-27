@@ -10,6 +10,10 @@ Use the package manager [npm](https://www.npmjs.com/) to install the dependencie
 npm install
 ```
 
+## Working Demo
+
+This app is deployed on `Heroku`. You can access that [here..](https://coport-assessment.herokuapp.com/).
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
